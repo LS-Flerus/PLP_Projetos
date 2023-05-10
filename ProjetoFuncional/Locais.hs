@@ -32,3 +32,12 @@ localRemoveItem local item =
     eventosColeta = eventosColeta local,
     eventosInvestigacao = eventosInvestigacao local
   }
+
+localRemoveTodosItens :: Local -> Local
+localRemoveTodosItens local = 
+  Local {
+    nomeLocal = nomeLocal local,
+    inventarioLocal = [],
+    eventosColeta = eventosColeta local,
+    eventosInvestigacao = eventosInvestigacao local
+  }
