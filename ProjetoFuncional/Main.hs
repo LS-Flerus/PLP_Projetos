@@ -90,7 +90,7 @@ usarItem status = do
 -- CRIAR ITEM --
 criarItem :: Status -> IO ()
 criarItem status = do
-    putStrLn ("Receitas:\n" ++ printReceitas ++ "\n")
+    putStrLn ("Receitas:\n" ++ printReceitas receitasCrafting ++ "\n")
     let inventarioConsumiveis = inventarioFiltrado Consumivel (inventario personagem)
     putStrLn ("Inventario:\n" ++ printInventario inventarioConsumiveis ++ "\n")
     print "Qual deseja criar?"
@@ -132,7 +132,7 @@ investigar status = do
     putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
-    print "Quais ferramanetas deseja levar (max 5)?"
+    print "Quais ferramentas deseja levar? (max 5)"
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens

@@ -3,6 +3,7 @@ module CriacaoItens where
 import Personagem 
 import Itens
 import Explorar
+import Text.Printf
 
 data Receita = Receita {idReceita :: Int, itemA :: Item, itemB :: Item, resultado :: Item} deriving (Show, Read, Eq)
 
@@ -17,6 +18,19 @@ receitasCrafting =
 
 receitaContem :: Int -> Item -> Receita -> Bool -- Retorna True se o item enviado é um dos ingredientes da receita (não o resultado)
 receitaContem receitaId item receita = (itemA receita == item && idReceita receita == receitaId) || (itemB receita == item && idReceita receita == receitaId)
+
+printReceitas :: [Receita] -> String
+printReceitas [] = ""
+printReceitas receitas = formatada ++ next
+                    where receita = head receitas 
+                          formatada = stringFormatadaReceita receita 
+                          receitasComReducao = tail receitas
+                          next = if not (null receitasComReducao) 
+                                 then "\n" ++ printReceitas receitasComReducao
+                                 else ""
+                                    
+stringFormatadaReceita :: Receita -> String
+stringFormatadaReceita receita = printf "ID: %i, %s + %s = %s" (idReceita receita) (nome (itemA receita)) (nome (itemB receita)) (nome (resultado receita))  
 
 procuraReceita :: Int -> Item -> Item -> Item
 procuraReceita receitaId itemA itemB
