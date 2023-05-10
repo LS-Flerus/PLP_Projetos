@@ -50,20 +50,48 @@ printInventario' (head:tail) indice = printf "%i. %s %i. %s" indice (nome item) 
                                                 then "\n" ++ printInventario' tail (indice+1)
                                                 else "" 
 
-listaItensContemTodos' :: [Item] -> [Item] -> Bool -- listaA -> listaB -> True se listaA está contida completamente em listaB, incluindo repetições.
-listaItensContemTodos' [] [] = True
-listaItensContemTodos' [] listaContem = True 
-listaItensContemTodos' listaContida [] = False
-listaItensContemTodos' listaContida listaContem
-                                                | itemA == itemB = listaItensContemTodos' (tail listaContida) (tail listaContem)
-                                                | otherwise = listaItensContemTodos' listaContida (tail listaContem)
+
+
+
+listaItensEstaContida :: [Item] -> [Item] -> Bool
+listaItensEstaContida listaContida listaContem = listaItensEstaContida' (sortOn nome listaContida) (sortOn nome listaContem)
+
+inventarioParaLista :: Inventario -> [Item]
+inventarioParaLista inventario = inventarioParaLista' inventario []
+
+listaParaInventario :: [Item] -> Inventario
+listaParaInventario lista = listaParaInventario' lista []
+
+
+inventarioEstaContido :: Inventario -> Inventario -> Bool
+inventarioEstaContido inventarioContido inventarioContem = listaItensEstaContida (inventarioParaLista inventarioContido) (inventarioParaLista inventarioContem)
+
+listaItensEstaContida' :: [Item] -> [Item] -> Bool -- listaA -> listaB -> True se listaA está contida completamente em listaB, incluindo repetições.
+listaItensEstaContida' [] [] = True
+listaItensEstaContida' [] listaContem = True 
+listaItensEstaContida' listaContida [] = False
+listaItensEstaContida' listaContida listaContem
+                                                | itemA == itemB = listaItensEstaContida' (tail listaContida) (tail listaContem)
+                                                | otherwise = listaItensEstaContida' listaContida (tail listaContem)
                                                 where itemA = head listaContida
                                                       itemB = head listaContem
 
+inventarioParaLista' :: Inventario -> [Item] -> [Item]
+inventarioParaLista' [] _ = []
+inventarioParaLista' inventario lista = inventarioParaLista' inventarioComRemocao listaAtualizada
+                                    where itemAtual = fst (head inventario)
+                                          listaAtualizada = lista ++ [itemAtual]
+                                          inventarioComRemocao = removeItemInventario itemAtual inventario
 
-listaItensContemTodos :: [Item] -> [Item] -> Bool
-listaItensContemTodos listaContida listaContem = listaItensContemTodos' (sortOn nome listaContida) (sortOn nome listaContem)
-                                          
+
+listaParaInventario' :: [Item] -> Inventario -> Inventario
+listaParaInventario' [] inventario = inventario
+listaParaInventario' lista inventario = listaParaInventario' listaComRemocao inventarioAdicionado
+                              where listaComRemocao = tail lista
+                                    itemAtual = head lista
+                                    inventarioAdicionado = addItemInventario itemAtual inventario 
+
+                              
 
 
 {--
