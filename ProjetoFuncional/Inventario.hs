@@ -57,11 +57,17 @@ listaItensEstaContida :: [Item] -> [Item] -> Bool
 listaItensEstaContida listaContida listaContem = listaItensEstaContida' (sortOn nome listaContida) (sortOn nome listaContem)
 
 inventarioParaLista :: Inventario -> [Item]
-inventarioParaLista inventario = inventarioParaLista' inventario []
+inventarioParaLista inventario = sortOn nome (inventarioParaLista' inventario [])
 
 listaParaInventario :: [Item] -> Inventario
 listaParaInventario lista = listaParaInventario' lista []
 
+adicionaDoisInventarios :: Inventario -> Inventario -> Inventario
+adicionaDoisInventarios [] inventario = inventario
+adicionaDoisInventarios inventarioA inventarioB = adicionaDoisInventarios inventarioARemovido inventarioBAdicionado
+                                          where itemAtual = fst (head inventarioA)
+                                                inventarioARemovido = removeItemInventario itemAtual inventarioA
+                                                inventarioBAdicionado = addItemInventario itemAtual inventarioB
 
 inventarioEstaContido :: Inventario -> Inventario -> Bool
 inventarioEstaContido inventarioContido inventarioContem = listaItensEstaContida (inventarioParaLista inventarioContido) (inventarioParaLista inventarioContem)
