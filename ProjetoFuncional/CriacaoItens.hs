@@ -2,6 +2,7 @@ module CriacaoItens where
 
 import Personagem 
 import Itens
+import Explorar
 
 data Receita = Receita {idReceita :: Int, itemA :: Item, itemB :: Item, resultado :: Item} deriving (Show, Read, Eq)
 

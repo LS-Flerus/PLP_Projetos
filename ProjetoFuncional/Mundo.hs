@@ -1,5 +1,7 @@
 module Mundo where
 
+import Locais
+
 data MomentoDia = Manha | Tarde | Noite deriving (Eq, Ord, Show, Read, Bounded, Enum)
 
 data CamboinhaDoNorte = CamboinhaDoNorte
@@ -7,7 +9,8 @@ data CamboinhaDoNorte = CamboinhaDoNorte
     momentoDia :: MomentoDia,
     vidaCarro :: Int,
     locaisArmadilha :: [Int],
-    locaisRobo :: [Bool]
+    locaisRobo :: [Bool],
+    areas :: [Local]
   }
 
 nextDia :: CamboinhaDoNorte -> CamboinhaDoNorte
@@ -17,7 +20,8 @@ nextDia mundo =
       momentoDia = Manha,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo
+      locaisRobo = locaisRobo mundo,
+      areas = areas mundo
     }
 
 nextMomento :: CamboinhaDoNorte -> CamboinhaDoNorte
@@ -27,7 +31,8 @@ nextMomento mundo =
       momentoDia = succ (momentoDia mundo),
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo
+      locaisRobo = locaisRobo mundo,
+      areas = areas mundo
     }
 
 setVidaCarro :: Int -> CamboinhaDoNorte -> CamboinhaDoNorte
@@ -37,7 +42,8 @@ setVidaCarro vida mundo =
       momentoDia = momentoDia mundo,
       vidaCarro = vida,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo
+      locaisRobo = locaisRobo mundo,
+      areas = areas mundo
     }
 
 setArmadilha :: Int -> CamboinhaDoNorte -> CamboinhaDoNorte
@@ -47,7 +53,8 @@ setArmadilha local mundo =
       momentoDia = momentoDia mundo,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo
+      locaisRobo = locaisRobo mundo,
+      areas = areas mundo
     }
 
 setLocalRobo :: Int -> CamboinhaDoNorte -> CamboinhaDoNorte
@@ -57,5 +64,6 @@ setLocalRobo local mundo =
       momentoDia = momentoDia mundo,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo
+      locaisRobo = locaisRobo mundo,
+      areas = areas mundo
     }
