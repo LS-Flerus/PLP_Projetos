@@ -41,19 +41,19 @@ momentoDiaImpl status = do
 operacao :: String -> Status -> IO ()
 operacao entrada status 
   | entrada ==  "1" = do
-  putStrLn ("Usar Item\n")
+  putStrLn "Usar Item\n"
   usarItem status
   
   | entrada == "2" = do
-  putStrLn ("Criar Item\n")
+  putStrLn "Criar Item\n"
   criarItem status
   
   | entrada == "3" = do
-  putStrLn ("Coletar\n")
+  putStrLn "Coletar\n"
   coletar status
   
   | entrada == "4" = do
-  putStrLn ("Investigar\n")
+  putStrLn "Investigar\n"
   investigar status
   
   | entrada == "5" = do
@@ -65,8 +65,8 @@ operacao entrada status
   momentoDiaImpl status
   -- OTHERWISE --
   | otherwise = do
-  putStrLn ("Comando desconhecido\n")
-  momentoDiaImpl (status)
+  putStrLn "Comando desconhecido\n"
+  momentoDiaImpl status
   
   where personagem = fst status
         mundo = snd status
@@ -80,7 +80,7 @@ usarItem status = do
     input <- readLn :: IO Int
     if (input > length inventarioConsumiveis || input < 1)
       then 
-      valorInvalido (status)
+      valorInvalido status
       else
       momentoDiaImpl ((usarItemImpl (getItem input inventarioConsumiveis) status))
 
@@ -97,7 +97,7 @@ criarItem status = do
     input <- readLn :: IO Int
     if (input > length receitasCrafting || input < 1)
       then 
-        valorInvalido (status)
+        valorInvalido status
       else
         momentoDiaImpl ((criarItemImpl input personagem, mundo))
     where personagem = fst status
@@ -106,7 +106,7 @@ criarItem status = do
 -- COLETAR --
 coletar :: Status -> IO ()
 coletar status = do
-    putStrLn(escolherLocal)
+    putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
     print "Quais ferramanetas deseja levar (max 3)?"
@@ -116,7 +116,7 @@ coletar status = do
     let listaItens = [z |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1)), let z = fst x]
 
     let statusII = coletarImpl inputLocal listaItens status
-    if (momentoDia mundo == Noite)
+    if momentoDia mundo == Noite
         then 
           loopDia (fst statusII, nextDia (snd statusII))
         else
@@ -129,7 +129,7 @@ coletar status = do
 investigar :: Status -> IO ()
 investigar status = do
 
-    putStrLn(escolherLocal)
+    putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
     print "Quais ferramanetas deseja levar (max 5)?"
@@ -139,7 +139,7 @@ investigar status = do
     let listaItens = [z |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1)), let z = fst x]
 
     let statusII = investigarImpl inputLocal listaItens status
-    if (momentoDia mundo == Noite)
+    if momentoDia mundo == Noite
         then 
           loopDia (fst statusII, nextDia (snd statusII))
         else
@@ -150,7 +150,7 @@ investigar status = do
 
 valorInvalido :: Status -> IO ()
 valorInvalido status = do
-    print("Valor Invalido")
+    print "Valor Invalido"
     momentoDiaImpl status
 
 

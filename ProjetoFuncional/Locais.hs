@@ -7,7 +7,7 @@ data StatusArmadilha = Nenhuma | Armando | Armada deriving (Eq, Ord, Show, Read,
 
 data EventoColeta  = EventoColeta {
                     requisitosColeta :: [Item],
-                    coletado :: Item
+                    coletado :: [Item]
 }
 
 data EventoInvestigacao = EventoInvestigacao {
