@@ -109,7 +109,7 @@ coletar status = do
     putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
-    print "Quais ferramanetas deseja levar (max 3)?"
+    print "Quais ferramentas deseja levar (max 3)?"
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
