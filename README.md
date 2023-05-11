@@ -38,3 +38,9 @@ O Autômato - um robô programado para realizar uma missão específica. Não é
 # Eventos:
 
 São caixas de diálogo especiais que são desbloqueadas em certas condições. Cada evento se comporta de forma diferente: alguns podem afetar seus status de alguma forma, outros podem acabar te dando informações sobre as 3 criaturas e dicas sobre como prosseguir com seu objetivo, ou até mesmo lhe dar itens.
+
+# Como compilar?
+
+```Bash
+$ ghc Main.hs
+```
