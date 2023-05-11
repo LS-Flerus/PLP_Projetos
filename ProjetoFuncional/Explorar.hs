@@ -30,7 +30,7 @@ coletarLocal' status itens idLocal (evento:tail)
         itemColeta = coletado evento
         personagemItemAdicionado = addItemPersonagem itemColeta personagem
         mensagem = diario personagem ++ "adquiriu item " ++ nome itemColeta ++ "\n" 
-        personagemEscreverDiario = setDiario mensagem personagem
+        personagemEscreverDiario = setDiario mensagem personagemItemAdicionado
         qtddItens = quantosNoInventario itemColeta (inventarioLocal local)
 
 -- Investigar Implementacao
