@@ -116,5 +116,6 @@ checaSeFimDeJogo status
                   | sede personagem >= 100 = "Voce morreu de sede."
                   | vida personagem <= 0 = "Voce morreu de morte matada."
                   | vidaCarro mundo >= 100 = "Parabens, seu carro esta rodando de novo."
+                  | otherwise = ""
                   where personagem = fst status
                         mundo = snd status
