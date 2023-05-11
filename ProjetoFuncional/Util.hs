@@ -17,8 +17,6 @@ escolherLocal = "Qual local deseja visitar?\n1. Base Militar\n2. Floresta \n3. L
 
 -- STRINGS FIM --
 
-data Receita = Receita {itemA :: Item, itemB :: Item, resultado :: Item} deriving (Show, Read, Eq)
-
 recebeStringValida :: [String] -> IO String 
 recebeStringValida valoresValidos = do
                               putStrLn "Digite sua escolha"
