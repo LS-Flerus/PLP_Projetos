@@ -116,12 +116,14 @@ coletar status = do
     let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i - 1))]
 
     let statusII = coletarImpl status inputLocal listaItens
+    let personagemSede = setSede ((sede (fst statusII)) + 5) (fst statusII)
+    let personagemFome = setFome ((fome personagemSede) + 10) personagemSede
     putStrLn (diario (fst statusII))
     if momentoDia mundo == Noite
         then 
-          loopDia (fst statusII, nextDia (snd statusII))
+          loopDia (personagemFome, nextDia (snd statusII))
         else
-          momentoDiaImpl (fst statusII, nextMomento (snd statusII))
+          momentoDiaImpl (personagemSede, nextMomento (snd statusII))
           
     where personagem = fst status
           mundo = snd status
@@ -140,12 +142,14 @@ investigar status = do
     let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i - 1))]
 
     let statusII = investigarImpl status inputLocal listaItens
+    let personagemSede = setSede ((sede (fst statusII)) + 5) (fst statusII)
+    let personagemFome = setFome ((fome personagemSede) + 10) personagemSede
     putStrLn (diario (fst statusII))
     if momentoDia mundo == Noite
         then 
-          loopDia (fst statusII, nextDia (snd statusII))
+          loopDia (personagemFome, nextDia (snd statusII))
         else
-          momentoDiaImpl (fst statusII, nextMomento (snd statusII))
+          momentoDiaImpl (personagemSede, nextMomento (snd statusII))
           
     where personagem = fst status
           mundo = snd status

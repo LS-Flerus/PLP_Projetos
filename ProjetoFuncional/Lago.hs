@@ -5,7 +5,7 @@ import Inventario
 
 lago = Local{ 
           nomeLocal = "Lago"
-        , inventarioLocal = listaParaInventario [pedra, pedra, madeira, comida, agua, agua]
+        , inventarioLocal = listaParaInventario [pedra, pedra, madeira, comida, agua, agua, isqueiro, estepe, chapeuOperario]
         , eventosInvestigacao = 
             [
                 EventoInvestigacao 
