@@ -32,7 +32,7 @@ module Montanha where
              [ 
                  EventoColeta  
                  { 
-                       requisitosColeta = [agua, bolsa] 
+                       requisitosColeta = [agua, mochila] 
                      , coletado = comida
  
                  }, 
