@@ -20,7 +20,6 @@ data CamboinhaDoNorte = CamboinhaDoNorte
     momentoDia :: MomentoDia,
     vidaCarro :: Int,
     locaisArmadilha :: [StatusArmadilha],
-    locaisRobo :: [Bool],
     areas :: [Local]
   }
 
@@ -31,7 +30,6 @@ nextDia mundo =
       momentoDia = Manha,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo,
       areas = areas mundo
     }
 
@@ -42,7 +40,6 @@ nextMomento mundo =
       momentoDia = succ (momentoDia mundo),
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo,
       areas = areas mundo
     }
 
@@ -53,7 +50,6 @@ setVidaCarro vida mundo =
       momentoDia = momentoDia mundo,
       vidaCarro = vida,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo,
       areas = areas mundo
     }
 
@@ -64,18 +60,6 @@ setArmadilha armadilhas mundo =
       momentoDia = momentoDia mundo,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = armadilhas,
-      locaisRobo = locaisRobo mundo,
-      areas = areas mundo
-    }
-
-setLocalRobo :: Int -> CamboinhaDoNorte -> CamboinhaDoNorte
-setLocalRobo local mundo =
-  CamboinhaDoNorte
-    { dia = dia mundo,
-      momentoDia = momentoDia mundo,
-      vidaCarro = vidaCarro mundo,
-      locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo,
       areas = areas mundo
     }
 
@@ -86,7 +70,6 @@ areaRemoveItem mundo idLocal item =
       momentoDia = momentoDia mundo,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo,
       areas = locaisBefore ++ [localRemoveItem local item] ++ locaisAfter
     }
 
@@ -101,8 +84,21 @@ areaRemoveTodosItem mundo idLocal item =
       momentoDia = momentoDia mundo,
       vidaCarro = vidaCarro mundo,
       locaisArmadilha = locaisArmadilha mundo,
-      locaisRobo = locaisRobo mundo,
       areas = locaisBefore ++ [localRemoveTodosItem local item] ++ locaisAfter
+    }
+
+    where local = areas mundo !! (idLocal - 1)
+          locaisBefore = take (idLocal - 1) (areas mundo)
+          locaisAfter = drop (idLocal) (areas mundo)
+
+roboAfetarArea :: Int -> CamboinhaDoNorte -> CamboinhaDoNorte
+roboAfetarArea idLocal mundo =
+  CamboinhaDoNorte
+    { dia = dia mundo,
+      momentoDia = momentoDia mundo,
+      vidaCarro = vidaCarro mundo,
+      locaisArmadilha = locaisArmadilha mundo,
+      areas = locaisBefore ++ [roboAfetarLocal local] ++ locaisAfter
     }
 
     where local = areas mundo !! (idLocal - 1)
