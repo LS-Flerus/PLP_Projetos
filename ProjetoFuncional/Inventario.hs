@@ -15,6 +15,10 @@ addItemInventario item (head:tail) = if itemTupla == item
                                           quantidadeTupla = snd head
                                           novaQuantidade = quantidadeTupla + 1
 
+addItensInventario :: [Item] -> Inventario -> Inventario
+addItensInventario [] inventario = inventario
+addItensInventario (head:tail) inventario = addItensInventario tail (addItemInventario head inventario)
+
 removeItemInventario :: Item -> Inventario -> Inventario
 removeItemInventario _ [] = []
 removeItemInventario item (head:tail) = if itemTupla == item
@@ -26,6 +30,19 @@ removeItemInventario item (head:tail) = if itemTupla == item
                                 where itemTupla = fst head
                                       quantidadeTupla = snd head
                                       novaQuantidade = quantidadeTupla - 1
+
+removeItensInventario :: [Item] -> Inventario -> Inventario
+removeItensInventario [] inventario = inventario
+removeItensInventario (head:tail) inventario = removeItensInventario tail (removeItemInventario head inventario)
+
+removeTodosItemInventario :: Item -> Inventario -> Inventario
+removeTodosItemInventario _ [] = []
+removeTodosItemInventario item (head:tail) = if itemTupla == item
+                                        then 
+                                            (item, novaQuantidade) : tail
+                                        else head : removeItemInventario item tail
+                                where itemTupla = fst head
+                                      novaQuantidade = 0
 
 quantosNoInventario :: Item -> Inventario -> Int
 quantosNoInventario _ [] = 0
@@ -97,13 +114,4 @@ listaParaInventario' lista inventario = listaParaInventario' listaComRemocao inv
                                     itemAtual = head lista
                                     inventarioAdicionado = addItemInventario itemAtual inventario 
 
-                              
-
-
-{--
-getItem :: Int -> Inventario -> Item
-getItem i [] = erro
-getItem 1 (head:tail) = fst head
-getItem i (head:tail) = getItem (i - 1) tail
---}
 

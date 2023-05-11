@@ -7,11 +7,12 @@ data StatusArmadilha = Nenhuma | Armando | Armada deriving (Eq, Ord, Show, Read,
 
 data EventoColeta  = EventoColeta {
                     requisitosColeta :: [Item],
-                    coletado :: [Item]
+                    coletado :: Item
 }
 
 data EventoInvestigacao = EventoInvestigacao {
                     requisitosInvestigacao :: [Item],
+                    alvoInvestigacao :: [Item],
                     mensagemFalha :: String,
                     mensagemSucesso :: String
 
@@ -33,11 +34,11 @@ localRemoveItem local item =
     eventosInvestigacao = eventosInvestigacao local
   }
 
-localRemoveTodosItens :: Local -> Local
-localRemoveTodosItens local = 
+localRemoveTodosItem :: Local -> Item -> Local
+localRemoveTodosItem local item = 
   Local {
     nomeLocal = nomeLocal local,
-    inventarioLocal = [],
+    inventarioLocal = removeTodosItemInventario item (inventarioLocal local),
     eventosColeta = eventosColeta local,
     eventosInvestigacao = eventosInvestigacao local
   }

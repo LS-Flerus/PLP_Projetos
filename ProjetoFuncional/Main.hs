@@ -5,18 +5,7 @@ import Personagem
 import Itens
 import Menu
 import Mundo
-import CriacaoItens
-
--- STRINGS INÍCIO --
-inicio = "Voce estava cansado da vida na cidade, saiu com seu carro, deu tudo errado.\n"
-
-inicioDia :: Int -> String
-inicioDia = printf "\n--- INICIO DO DIA %i --- \n"
-
-oQueFazer = "O que deseja fazer?\n1) Usar Item\n2) Criar Item \n3) Sair em Coleta\n4) Sair em investigação\n5) Ver Inventário\n6) Ver Status\n"
-escolherLocal = "Qual local deseja visitar?\n1. Base Militar\n2) Floresta \n3) Lago\n4) Montanha\n5) Vila Abandonada\n"
-
--- STRINGS FIM --  
+import CriacaoItens 
 
 loopDia :: Status -> IO ()
 loopDia status = do
@@ -113,7 +102,7 @@ coletar status = do
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
-    let listaItens = [z |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1)), let z = fst x]
+    let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1))]
 
     let statusII = coletarImpl status inputLocal listaItens
     if momentoDia mundo == Noite
@@ -136,7 +125,7 @@ investigar status = do
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
-    let listaItens = [z |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1)), let z = fst x]
+    let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1))]
 
     let statusII = investigarImpl status inputLocal listaItens
     if momentoDia mundo == Noite

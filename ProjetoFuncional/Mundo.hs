@@ -1,8 +1,12 @@
 module Mundo where
 
 import Locais
+import Itens
+import Personagem
 
 data MomentoDia = Manha | Tarde | Noite deriving (Eq, Ord, Show, Read, Bounded, Enum)
+
+type Status = (Personagem, CamboinhaDoNorte)
 
 data CamboinhaDoNorte = CamboinhaDoNorte
   { dia :: Int,
@@ -67,3 +71,33 @@ setLocalRobo local mundo =
       locaisRobo = locaisRobo mundo,
       areas = areas mundo
     }
+
+areaRemoveItem :: CamboinhaDoNorte -> Int -> Item -> CamboinhaDoNorte
+areaRemoveItem mundo idLocal item = 
+  CamboinhaDoNorte
+    { dia = dia mundo,
+      momentoDia = momentoDia mundo,
+      vidaCarro = vidaCarro mundo,
+      locaisArmadilha = locaisArmadilha mundo,
+      locaisRobo = locaisRobo mundo,
+      areas = locaisBefore ++ [localRemoveItem local item] ++ locaisAfter
+    }
+
+    where local = areas mundo !! (idLocal - 1)
+          locaisBefore = take (idLocal - 1) (areas mundo)
+          locaisAfter = drop (idLocal) (areas mundo)
+
+areaRemoveTodosItem :: CamboinhaDoNorte -> Int -> Item -> CamboinhaDoNorte
+areaRemoveTodosItem mundo idLocal item = 
+  CamboinhaDoNorte
+    { dia = dia mundo,
+      momentoDia = momentoDia mundo,
+      vidaCarro = vidaCarro mundo,
+      locaisArmadilha = locaisArmadilha mundo,
+      locaisRobo = locaisRobo mundo,
+      areas = locaisBefore ++ [localRemoveTodosItem local item] ++ locaisAfter
+    }
+
+    where local = areas mundo !! (idLocal - 1)
+          locaisBefore = take (idLocal - 1) (areas mundo)
+          locaisAfter = drop (idLocal) (areas mundo)

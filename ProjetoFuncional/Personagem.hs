@@ -15,6 +15,10 @@ addItemPersonagem :: Item -> Personagem -> Personagem
 addItemPersonagem item personagem = Personagem {vida = vida personagem, fome = fome personagem, sede = sede personagem, 
                                                 inventario = addItemInventario item (inventario personagem), diario = diario personagem}
 
+addItensPersonagem :: [Item] -> Personagem -> Personagem
+addItensPersonagem itens personagem = Personagem {vida = vida personagem, fome = fome personagem, sede = sede personagem, 
+                                                inventario = addItensInventario itens (inventario personagem), diario = diario personagem}
+
 removeItemPersonagem :: Item -> Personagem -> Personagem
 removeItemPersonagem item personagem = Personagem {vida = vida personagem, fome = fome personagem, sede = sede personagem, 
                                                 inventario = removeItemInventario item (inventario personagem), diario = diario personagem}

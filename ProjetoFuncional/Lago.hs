@@ -10,7 +10,8 @@ lago = Local{
                 EventoInvestigacao 
                 { -- a mensagem do deus das frutas tropicais
                     requisitosInvestigacao = [lanterna]
-                    , mensagemFalha = "Ha um lugar mais escuro do que todos os outros nesse lago:\
+                    ,alvoInvestigacao = [isqueiro]
+                    ,mensagemFalha = "Ha um lugar mais escuro do que todos os outros nesse lago:\
                                       \ uma arvore morta, de tronco oco. Ha um buraco na base,\
                                       \ onde você poderia enfiar o braco para procurar itens. Dá para ouvir alguma coisa\
                                       \ se mexendo lá dentro.\nVoce julga melhor voltar aqui com uma lanterna,\ 
@@ -31,6 +32,7 @@ lago = Local{
                 EventoInvestigacao 
                 { -- a mensagem do deus das frutas tropicais
                     requisitosInvestigacao = [faca]
+                    , alvoInvestigacao = [estepe]
                     , mensagemFalha = "Num surto de sorte, voce acha uma canoa de pesca.\
                                       \uSonhos de fuga passam pela sua cabeca, ate voce lembrar que isso eh um lago: o maximo que voce pode fazer eh dar um passeio e voltar.\
                                       \Mas algo te diz que ha segredos dentro desse lago, entao por que nao?\
@@ -47,7 +49,8 @@ lago = Local{
                 },
                 EventoInvestigacao 
                 { -- um quartinho de ferramentas na beira do lago, com a porta emperrada
-                    requisitosInvestigacao = [] -- nao precisa de nenhum item 
+                    requisitosInvestigacao = [] -- nao precisa de nenhum item
+                    , alvoInvestigacao = [chapeuOperario] 
                     , mensagemFalha = ""
 
                     , mensagemSucesso = "Ha um pequeno galpao de ferramentas meio distante.\
@@ -64,17 +67,17 @@ lago = Local{
                 EventoColeta 
                 {
                       requisitosColeta = [lanterna, faca] -- o tal do coco da mensagem acima
-                    , coletado = [corda, isqueiro] 
+                    , coletado = isqueiro
                 },
                 EventoColeta 
                 {
                       requisitosColeta = [varaPesca] -- tem um pneu velho jogado dentro do lago
-                    , coletado = [estepe] 
+                    , coletado = estepe
                 },
                 EventoColeta 
                 {
                       requisitosColeta = [machado] -- o chapeu de Operario dentro de um pequeno galpao de ferramentas
-                    , coletado = [chapeuOperario] 
+                    , coletado = chapeuOperario 
                 }
             ]
                    }
