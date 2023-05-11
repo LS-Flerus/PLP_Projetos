@@ -169,8 +169,7 @@ main = do
     let mc = Personagem {vida = 100, fome = 0, sede = 0, inventario = [(agua, 2), (comida, 1), (faca, 1)], diario = ""}
     let mundo = CamboinhaDoNorte {dia = 1, 
                                   momentoDia = Manha, 
-                                  vidaCarro = 0, locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma], 
-                                  locaisRobo = [False,False,False,False,False],
+                                  vidaCarro = 0, locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma],
                                   areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]
                                   }
     let status = (mc, mundo)
