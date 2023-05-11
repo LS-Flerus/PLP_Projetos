@@ -26,3 +26,7 @@ recebeStringValida valoresValidos = do
                                     else do
                                         putStr "Escolha invalida. " 
                                         recebeStringValida valoresValidos
+
+recebeInputValido :: Int -> IO String
+recebeInputValido limite = recebeStringValida lista
+                    where lista = map show [1..limite]
