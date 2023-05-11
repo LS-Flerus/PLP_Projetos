@@ -11,6 +11,7 @@ estepe = Item {nome = "Step", tipoItem = Consumivel}
 combustivel = Item {nome = "Combustivel", tipoItem = Consumivel}
 bateriaCarro = Item {nome = "Bateria de Carro", tipoItem = Consumivel}
 rebimbocaDaParafuseta = Item {nome = "Rebimboca da Parafuseta", tipoItem = Consumivel}
+carvao = Item {nome = "Carvão", tipoItem = Consumivel}
 
 
 -- Item List Materiais
@@ -31,6 +32,7 @@ radar = Item {nome = "Radar", tipoItem = Ferramenta}
 picareta = Item {nome = "Picareta", tipoItem = Ferramenta}
 machado = Item {nome = "Machado", tipoItem = Ferramenta}
 chapeuOperario = Item {nome = "Chapeu de Operario", tipoItem = Ferramenta}
+mochila= Item {nome = "Mochila", tipoItem = Ferramenta}
 
 counterBesta = Item {nome = "Counter Besta", tipoItem = Ferramenta}
 counterArmadilha = Item {nome = "Counter Armadilha", tipoItem = Ferramenta}
