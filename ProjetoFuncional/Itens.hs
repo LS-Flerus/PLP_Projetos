@@ -33,6 +33,7 @@ machado = Item {nome = "Machado", tipoItem = Ferramenta}
 chapeuOperario = Item {nome = "Chapeu de Operario", tipoItem = Ferramenta}
 luvas = Item {nome = "Luvas", tipoItem = Ferramenta}
 bolsa = Item {nome = "Bolsa", tipoItem = Ferramenta}
+garrafa = Item {nome = "Garrafa", tipoItem = Ferramenta}
 
 
 counterBesta = Item {nome = "Counter Besta", tipoItem = Ferramenta}
