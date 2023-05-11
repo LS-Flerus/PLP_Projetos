@@ -86,8 +86,8 @@ usarItem status = do
 criarItem :: Status -> IO ()
 criarItem status = do
     putStrLn ("Receitas:\n" ++ printReceitas receitasCrafting ++ "\n")
-    let inventarioConsumiveis = inventarioFiltrado Consumivel (inventario personagem)
-    putStrLn ("Inventario:\n" ++ printInventario inventarioConsumiveis ++ "\n")
+    let inventarioMateriais = inventarioFiltrado Material (inventario personagem)
+    putStrLn ("Inventario:\n" ++ printInventario inventarioMateriais ++ "\n")
     print "Qual deseja criar?"
     input <- readLn :: IO Int
     if (input > length receitasCrafting || input < 1)
