@@ -18,11 +18,11 @@ baseMilitar = Local{
         eventosColeta = 
             [EventoColeta {
                     requisitosColeta = [],
-                    coletado = lanterna 
+                    coletado = linha 
                 },
                 EventoColeta {
                     requisitosColeta = [],
-                    coletado = linha 
+                    coletado = lanterna 
                 },
                 EventoColeta {
                     requisitosColeta = [lanterna],
