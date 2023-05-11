@@ -8,6 +8,7 @@ import Criaturas
 import Text.Printf
 import Util
 import Explorar
+import CriacaoItens
 
 usarItemImpl :: Item -> Status -> Status
 usarItemImpl item status 
@@ -20,7 +21,11 @@ usarItemImpl item status
     mundo = snd status
     
 criarItemImpl :: Int -> Personagem -> Personagem
-criarItemImpl n mc = mc
+criarItemImpl id mc = addItemPersonagem criado (removeItemPersonagem itemII (removeItemPersonagem itemI mc))
+  where receita = receitasCrafting !! (id - 1)
+        itemI = itemA receita
+        itemII = itemB receita
+        criado = resultado receita
 
 coletarImpl :: Status -> Int -> [Item] -> Status
 coletarImpl status idLocal itens
