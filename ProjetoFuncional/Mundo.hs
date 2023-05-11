@@ -8,11 +8,13 @@ data MomentoDia = Manha | Tarde | Noite deriving (Eq, Ord, Show, Read, Bounded, 
 
 type Status = (Personagem, CamboinhaDoNorte)
 
+data StatusArmadilha = Nenhuma | Armando | Armada deriving (Eq, Ord, Show, Read, Bounded, Enum)
+
 data CamboinhaDoNorte = CamboinhaDoNorte
   { dia :: Int,
     momentoDia :: MomentoDia,
     vidaCarro :: Int,
-    locaisArmadilha :: [Int],
+    locaisArmadilha :: [StatusArmadilha],
     locaisRobo :: [Bool],
     areas :: [Local]
   }
@@ -50,13 +52,13 @@ setVidaCarro vida mundo =
       areas = areas mundo
     }
 
-setArmadilha :: Int -> CamboinhaDoNorte -> CamboinhaDoNorte
-setArmadilha local mundo =
+setArmadilha :: [StatusArmadilha] -> CamboinhaDoNorte -> CamboinhaDoNorte
+setArmadilha armadilhas mundo =
   CamboinhaDoNorte
     { dia = dia mundo,
       momentoDia = momentoDia mundo,
       vidaCarro = vidaCarro mundo,
-      locaisArmadilha = locaisArmadilha mundo,
+      locaisArmadilha = armadilhas,
       locaisRobo = locaisRobo mundo,
       areas = areas mundo
     }

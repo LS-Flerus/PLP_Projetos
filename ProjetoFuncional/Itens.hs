@@ -31,5 +31,9 @@ picareta = Item {nome = "Picareta", tipoItem = Ferramenta}
 machado = Item {nome = "Machado", tipoItem = Ferramenta}
 chapeuOperario = Item {nome = "Chapeu de Operario", tipoItem = Ferramenta}
 
+counterBesta = Item {nome = "Counter Besta", tipoItem = Ferramenta}
+counterArmadilha = Item {nome = "Counter Armadilha", tipoItem = Ferramenta}
+counterRobo = Item {nome = "Counter Robo", tipoItem = Ferramenta}
+
 -- Item Erro
 erro = Item {nome = "Valor Invalido", tipoItem = Ferramenta}

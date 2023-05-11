@@ -6,6 +6,11 @@ import Itens
 import Menu
 import Mundo
 import CriacaoItens 
+import VilaAbandonada
+import Lago
+import BaseMilitar
+import Floresta
+import Montanha
 
 loopDia :: Status -> IO ()
 loopDia status = do
@@ -71,7 +76,7 @@ usarItem status = do
       then 
       valorInvalido status
       else
-      momentoDiaImpl (usarItemImpl (fst (inventarioConsumiveis !! (input+1))) status)
+      momentoDiaImpl (usarItemImpl (fst (inventarioConsumiveis !! (input - 1))) status)
 
       where personagem = fst status
             mundo = snd status
@@ -98,7 +103,7 @@ coletar status = do
     putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
-    print "Quais ferramentas deseja levar (max 3)?"
+    print "Quais ferramentas deseja levar (max 2)?"
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
@@ -150,9 +155,9 @@ main = do
     let mc = Personagem {vida = 100, fome = 0, sede = 0, inventario = [(agua, 2), (comida, 1), (faca, 1)], diario = ""}
     let mundo = CamboinhaDoNorte {dia = 1, 
                                   momentoDia = Manha, 
-                                  vidaCarro = 0, locaisArmadilha = [0,0,0,0,0], 
+                                  vidaCarro = 0, locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma], 
                                   locaisRobo = [False,False,False,False,False],
-                                  areas = []
+                                  areas = [baseMilitar, lago, montanha, floresta, vilaAbandonada]
                                   }
     let status = (mc, mundo)
     putStrLn "Start\n"

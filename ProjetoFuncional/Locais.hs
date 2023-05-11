@@ -3,8 +3,6 @@ module Locais where
 import Itens
 import Inventario
 
-data StatusArmadilha = Nenhuma | Armando | Armada deriving (Eq, Ord, Show, Read, Bounded, Enum)
-
 data EventoColeta  = EventoColeta {
                     requisitosColeta :: [Item],
                     coletado :: Item
@@ -12,7 +10,7 @@ data EventoColeta  = EventoColeta {
 
 data EventoInvestigacao = EventoInvestigacao {
                     requisitosInvestigacao :: [Item],
-                    alvoInvestigacao :: [Item],
+                    alvoInvestigacao :: [Item], -- Caso [] -> O alvo é a mensagem em si --
                     mensagemFalha :: String,
                     mensagemSucesso :: String
 

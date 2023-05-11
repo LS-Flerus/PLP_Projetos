@@ -1,3 +1,4 @@
+module Lago where
 import Locais
 import Itens
 import Inventario
