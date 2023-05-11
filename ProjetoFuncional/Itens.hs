@@ -23,6 +23,7 @@ linha = Item {nome = "Linha", tipoItem = Material}
 
 faca = Item {nome = "Faca de Combate", tipoItem = Ferramenta}
 lanterna = Item {nome = "Lanterna", tipoItem = Ferramenta}
+bussola = Item {nome = "Bussola", tipoItem = Ferramenta}
 varaPesca = Item {nome = "Vara de Pesca", tipoItem = Ferramenta}
 corda = Item {nome = "Corda", tipoItem = Ferramenta}
 isqueiro = Item {nome = "Isqueiro", tipoItem = Ferramenta}
