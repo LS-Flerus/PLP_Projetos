@@ -35,9 +35,9 @@ investigarLocal status itens idLocal = investigarLocal' status itens idLocal eve
 investigarLocal' :: Status -> [Item] -> Int -> [EventoInvestigacao] -> Status
 investigarLocal' status itens idLocal [] = status
 investigarLocal' status itens idLocal (evento:tail)
-  | alvo == [] = investigarLocal' ((setDiario mensagemSucess personagem), mundo) itens idLocal tail
-  | qtddItens <= 0 = investigarLocal' status itens idLocal tail
   | not (listaItensEstaContida (requisitosInvestigacao evento) itens) = investigarLocal' ((setDiario mensagemFail personagem), mundo) itens idLocal tail
+  | alvo == [] = investigarLocal' ((setDiario mensagemSucess personagem), mundo) itens idLocal tail
+  | (quantosNoInventario (head alvo) (inventarioLocal local)) <= 0 = investigarLocal' status itens idLocal tail
   | otherwise = investigarLocal' ((setDiario mensagemSucess personagem), mundo) itens idLocal tail
     
   where personagem = fst status
@@ -46,8 +46,5 @@ investigarLocal' status itens idLocal (evento:tail)
         alvo = alvoInvestigacao evento
         mensagemSucess = diario personagem ++ mensagemSucesso evento ++ "/n" 
         mensagemFail = diario personagem ++ mensagemFalha evento ++ "/n"
-        qtddItens = quantosNoInventario (head alvo) (inventarioLocal local)
         
-        
-
-    
+       
