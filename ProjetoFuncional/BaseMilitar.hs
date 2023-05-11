@@ -1,6 +1,6 @@
 BaseMilitar = Local{ 
           nomeLocal = "BaseMilitar",
-          inventarioLocal = [(linha, 200), (bateriaCarro,1)],
+          inventarioLocal = [(linha, 200), (bateriaCarro,1), (lanterna, 10)],
           eventosInvestigacao = [EventoInvestigacao {
                                       -- Evento de sucesso
                                 requisitosInvestigacao = [lanterna],
@@ -13,6 +13,10 @@ BaseMilitar = Local{
             [EventoColeta {
                     requisitosColeta = [],
                     coletado = lanterna 
+                },
+                EventoColeta {
+                    requisitosColeta = [],
+                    coletado = linha 
                 },
                 EventoColeta {
                     requisitosColeta = [lanterna],
