@@ -11,6 +11,7 @@ estepe = Item {nome = "Step", tipoItem = Consumivel}
 combustivel = Item {nome = "Combustivel", tipoItem = Consumivel}
 bateriaCarro = Item {nome = "Bateria de Carro", tipoItem = Consumivel}
 rebimbocaDaParafuseta = Item {nome = "Rebimboca da Parafuseta", tipoItem = Consumivel}
+carvão = Item {nome = "Carvão", tipoItem = Consumivel}
 
 
 -- Item List Materiais
