@@ -22,15 +22,20 @@ loopDia status = do
                   mundo = snd status
 
 momentoDiaImpl :: Status -> IO ()
-momentoDiaImpl status = do
-            let personagemDiarioResetado = setDiario "" personagem
-            putStrLn (show (momentoDia mundo) ++ "\n")
-            putStrLn oQueFazer
-            input <- getLine
-            operacao input (personagemDiarioResetado, mundo)
-              
-            where personagem = fst status
-                  mundo = snd status
+momentoDiaImpl status = if (checaSeFimDeJogo status) /= "" then do
+                          printf "%s Aperte enter para fechar o programa." (checaSeFimDeJogo status)
+                          input <- getLine
+                          print("")
+                        else
+                            do
+                              let personagemDiarioResetado = setDiario "" personagem
+                              putStrLn (show (momentoDia mundo) ++ "\n")
+                              putStrLn oQueFazer
+                              input <- getLine
+                              operacao input (personagemDiarioResetado, mundo)
+                            
+                              where personagem = fst status
+                                    mundo = snd status
 
 
 operacao :: String -> Status -> IO ()
