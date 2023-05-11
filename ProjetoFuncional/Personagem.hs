@@ -63,4 +63,8 @@ setSede valor personagem
 setDiario:: String -> Personagem -> Personagem
 setDiario texto personagem = Personagem {vida = vida personagem, fome = fome personagem, sede = sede personagem, 
                                inventario = inventario personagem, diario = texto }
+
+checaSeMorto :: Personagem -> Bool
+checaSeMorto personagem = (vida personagem <= 0) || (fome personagem >= 100) || (sede personagem >= 100)
+
                               
