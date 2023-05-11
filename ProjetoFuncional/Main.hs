@@ -109,7 +109,7 @@ coletar status = do
     putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
-    print "Quais ferramentas deseja levar (max 2)?"
+    print "Quais ferramentas deseja levar? (max 2. Digite [Int] ou [] para nao levar nada.)"
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
@@ -133,7 +133,7 @@ investigar status = do
     putStrLn escolherLocal
     inputLocal <- readLn :: IO Int
     let inventarioFerramentas = inventarioFiltrado Ferramenta (inventario personagem)
-    print "Quais ferramentas deseja levar? (max 5)"
+    print "Quais ferramentas deseja levar? (max 5. Digite [Int] ou [] para nao levar nada.)"
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
