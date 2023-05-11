@@ -20,11 +20,11 @@ usarItemImpl item status
 criarItemImpl :: Int -> Personagem -> Personagem
 criarItemImpl n mc = mc
 
-coletarImpl :: Int -> Status -> Status
-coletarImpl n mc = mc
+coletarImpl :: Status -> Int -> [Item] -> Status
+coletarImpl status idLocal itens = status
 
-investigarImpl :: Int -> Status -> Status
-investigarImpl n mc = mc
+investigarImpl :: Status -> Int -> [Item] -> Status
+investigarImpl status idLocal itens = status
 
 verStatus :: Status -> String
 verStatus status = printf "Vida: %i%%\nFome: %i%%\nSede: %i%%\nConserto da van: %i%%" (vida personagem) (fome personagem) (sede personagem) (vidaCarro mundo)

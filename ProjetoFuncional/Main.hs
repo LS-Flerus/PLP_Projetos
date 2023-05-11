@@ -82,7 +82,7 @@ usarItem status = do
       then 
       valorInvalido status
       else
-      momentoDiaImpl ((usarItemImpl (getItem input inventarioConsumiveis) status))
+      momentoDiaImpl (usarItemImpl (fst (inventarioConsumiveis !! (input+1))) status)
 
       where personagem = fst status
             mundo = snd status
@@ -115,7 +115,7 @@ coletar status = do
     let listaIDs = read inputItens
     let listaItens = [z |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1)), let z = fst x]
 
-    let statusII = coletarImpl inputLocal listaItens status
+    let statusII = coletarImpl status inputLocal listaItens
     if momentoDia mundo == Noite
         then 
           loopDia (fst statusII, nextDia (snd statusII))
@@ -138,7 +138,7 @@ investigar status = do
     let listaIDs = read inputItens
     let listaItens = [z |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1)), let z = fst x]
 
-    let statusII = investigarImpl inputLocal listaItens status
+    let statusII = investigarImpl status inputLocal listaItens
     if momentoDia mundo == Noite
         then 
           loopDia (fst statusII, nextDia (snd statusII))
@@ -155,11 +155,16 @@ valorInvalido status = do
 
 
 
+main :: IO ()
 main = do 
     putStrLn inicio
     let mc = Personagem {vida = 100, fome = 0, sede = 0, inventario = [(agua, 2), (comida, 1), (faca, 1)], diario = ""}
-    let mundo = CamboinhaDoNorte {dia = 1, momentoDia = Manha, vidaCarro = 0, locaisArmadilha = [0,0,0,0,0], locaisRobo =       
-    [False,False,False,False,False]}
+    let mundo = CamboinhaDoNorte {dia = 1, 
+                                  momentoDia = Manha, 
+                                  vidaCarro = 0, locaisArmadilha = [0,0,0,0,0], 
+                                  locaisRobo = [False,False,False,False,False],
+                                  areas = []
+                                  }
     let status = (mc, mundo)
     putStrLn "Start\n"
     loopDia status

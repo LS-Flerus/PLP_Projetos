@@ -10,9 +10,9 @@ data Receita = Receita {idReceita :: Int, itemA :: Item, itemB :: Item, resultad
 receitasCrafting :: [Receita] -- lista de [Item A, Item B, Item A + Item B]
 receitasCrafting = 
     [
-          Receita {idReceita = 2, itemA = linha, itemB = linha, resultado = varaPesca}
+          Receita {idReceita = 1, itemA = linha, itemB = linha, resultado = corda}
+        , Receita {idReceita = 2, itemA = linha, itemB = linha, resultado = varaPesca}
         , Receita {idReceita = 3, itemA = madeira, itemB = pedra, resultado = picareta}
-        , Receita {idReceita = 1, itemA = linha, itemB = linha, resultado = corda}
         , Receita {idReceita = 4, itemA = madeira, itemB = pedra, resultado = machado}
     ]
 
