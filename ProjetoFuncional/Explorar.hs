@@ -11,9 +11,9 @@ import Criaturas
 
 -- Coletar Implementacao
 coletarLocal :: Status -> [Item] -> Int -> Status
-  coletarLocal status itens idLocal
-  |encontroPeseguisor status idLocal = espantarPerseguidor coleta
-  |otherwise = atualizarArmadilha idLocal coleta
+coletarLocal status itens idLocal
+  |encontroPerseguidor status idLocal = espantarPerseguidor coleta
+  |otherwise = atualizarArmadilha coleta idLocal
   where eventos = eventosColeta ((areas (snd status)) !! (idLocal - 1))
         coleta = coletarLocal' status itens idLocal eventos
 
@@ -31,13 +31,13 @@ coletarLocal' status itens idLocal (evento:tail)
         personagemItemAdicionado = addItemPersonagem itemColeta personagem
         mensagem = diario personagem ++ "adquiriu item " ++ nome itemColeta ++ "\n" 
         personagemEscreverDiario = setDiario mensagem personagem
-        qtddItens = quantosNoInventario (coletado evento) (inventarioLocal local)
+        qtddItens = quantosNoInventario itemColeta (inventarioLocal local)
 
 -- Investigar Implementacao
 investigarLocal :: Status -> [Item] -> Int -> Status
 investigarLocal status itens idLocal
-  |encontroPeseguisor status idLocal = espantarPerseguidor investigacao
-  |otherwise = atualizarArmadilha idLocal investigacao 
+  |encontroPerseguidor status idLocal = espantarPerseguidor investigacao
+  |otherwise = atualizarArmadilha investigacao idLocal
   where eventos = eventosInvestigacao ((areas (snd status)) !! (idLocal - 1))
         investigacao = investigarLocal' status itens idLocal eventos
 

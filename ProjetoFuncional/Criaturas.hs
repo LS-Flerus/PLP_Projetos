@@ -67,12 +67,12 @@ encontroPerseguidor status idLocal = armadilhas !! (idLocal - 1) == Armando
 atualizarArmadilha :: Status -> Int -> Status
 atualizarArmadilha status idLocal 
     | elem Armada armadilhas = status
-    | elem Armando armadilhas = (personagem, setArmadilha (armarArmadilha armadilhas) status)
-    | otherwise = (personagem, setArmadilha (armando) status)
+    | elem Armando armadilhas = (personagem, setArmadilha (armarArmadilha armadilhas) mundo)
+    | otherwise = (personagem, setArmadilha armando mundo)
     where personagem = fst status
           mundo = snd status 
           armadilhas = locaisArmadilha mundo
-          armando = (take idLocal-1 armadilhas) ++ [Armando] ++ (drop idLocal armadilhas)
+          armando = (take (idLocal-1) armadilhas) ++ [Armando] ++ (drop idLocal armadilhas)
 
 armarArmadilha :: [StatusArmadilha] -> [StatusArmadilha]
 armarArmadilha [] = []
@@ -93,6 +93,6 @@ ataqueRoboBaseMilitar status itens
           personagemEscreverDiario = setDiario mensagemAtaque personagem
 
 encontroRoboBaseMilitar :: Status -> Int -> Bool
-encontroRoboBaseMilitar status idLocal = not (mod day 2 == 0)
+encontroRoboBaseMilitar status idLocal = (not (mod day 2 == 0)) && (idLocal == 1)
     where mundo = snd status
           day = dia mundo

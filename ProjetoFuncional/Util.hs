@@ -13,7 +13,7 @@ inicioDia :: Int -> String
 inicioDia = printf "\n--- INICIO DO DIA %i --- \n"
 
 oQueFazer = "O que deseja fazer?\n1) Usar Item\n2) Criar Item \n3) Sair em Coleta\n4) Sair em investigação\n5) Ver Inventário\n6) Ver Status\n"
-escolherLocal = "Qual local deseja visitar?\n1. Base Militar\n2) Floresta \n3) Lago\n4) Montanha\n5) Vila Abandonada\n"
+escolherLocal = "Qual local deseja visitar?\n1. Base Militar\n2. Floresta \n3. Lago\n4. Montanha\n5. Vila Abandonada\n"
 
 -- STRINGS FIM --
 

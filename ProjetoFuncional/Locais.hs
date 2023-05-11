@@ -10,7 +10,7 @@ data EventoColeta  = EventoColeta {
 
 data EventoInvestigacao = EventoInvestigacao {
                     requisitosInvestigacao :: [Item],
-                    alvoInvestigacao :: [Item], -- Caso [] -> O alvo é a mensagem em si --
+                    alvoInvestigacao :: [Item], -- Marca que item a investigação está indicando. Caso [] -> O alvo é a mensagem em si --
                     mensagemFalha :: String,
                     mensagemSucesso :: String
 

@@ -6,14 +6,15 @@ import Itens
 import Menu
 import Mundo
 import CriacaoItens 
-import VilaAbandonada
-import Lago
 import BaseMilitar
 import Floresta
+import Lago
 import Montanha
+import VilaAbandonada
 
 loopDia :: Status -> IO ()
 loopDia status = do
+            let personagemDiarioResetado = setDiario "" personagem
             putStrLn (inicioDia (dia mundo))
             momentoDiaImpl status
             
@@ -22,11 +23,11 @@ loopDia status = do
 
 momentoDiaImpl :: Status -> IO ()
 momentoDiaImpl status = do
-            putStrLn (diario personagem)
+            let personagemDiarioResetado = setDiario "" personagem
             putStrLn (show (momentoDia mundo) ++ "\n")
             putStrLn oQueFazer
             input <- getLine
-            operacao input status
+            operacao input (personagemDiarioResetado, mundo)
               
             where personagem = fst status
                   mundo = snd status
@@ -107,9 +108,10 @@ coletar status = do
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
-    let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1))]
+    let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i - 1))]
 
     let statusII = coletarImpl status inputLocal listaItens
+    putStrLn (diario (fst statusII))
     if momentoDia mundo == Noite
         then 
           loopDia (fst statusII, nextDia (snd statusII))
@@ -130,9 +132,10 @@ investigar status = do
     putStrLn (printInventario inventarioFerramentas ++ "\n")
     inputItens <- getLine
     let listaIDs = read inputItens
-    let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i + 1))]
+    let listaItens = [fst x |x <- inventarioFerramentas, i <- listaIDs, fst x == fst (inventarioFerramentas !! (i - 1))]
 
     let statusII = investigarImpl status inputLocal listaItens
+    putStrLn (diario (fst statusII))
     if momentoDia mundo == Noite
         then 
           loopDia (fst statusII, nextDia (snd statusII))
@@ -157,7 +160,7 @@ main = do
                                   momentoDia = Manha, 
                                   vidaCarro = 0, locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma], 
                                   locaisRobo = [False,False,False,False,False],
-                                  areas = [baseMilitar, lago, montanha, floresta, vilaAbandonada]
+                                  areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]
                                   }
     let status = (mc, mundo)
     putStrLn "Start\n"

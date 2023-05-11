@@ -3,6 +3,11 @@ module Mundo where
 import Locais
 import Itens
 import Personagem
+import BaseMilitar
+import Floresta
+import Lago
+import Montanha
+import VilaAbandonada
 
 data MomentoDia = Manha | Tarde | Noite deriving (Eq, Ord, Show, Read, Bounded, Enum)
 
