@@ -93,6 +93,20 @@ ataqueRoboBaseMilitar status itens
           personagemEscreverDiario = setDiario mensagemAtaque personagem
 
 encontroRoboBaseMilitar :: Status -> Int -> Bool
-encontroRoboBaseMilitar status idLocal = (not (mod day 2 == 0)) && (idLocal == 1)
+encontroRoboBaseMilitar status idLocal = (mod day 2 == 0) && (idLocal == 1)
     where mundo = snd status
           day = dia mundo
+          
+roboBarulhos :: Int -> String
+roboBarulhos dia
+  | elem dia [3, 5, 7, 9, 11, 13] = "Escuta-se ao longe barulhos de engrenagem" 
+  | otherwise = ""
+
+roboDestruirLocal :: Int -> Status -> Status
+roboDestruirLocal dia status
+  | dia == 5 = (personagem, roboAfetarArea 4 mundo)
+  | dia == 9 = (personagem, roboAfetarArea 3 mundo)
+  | dia == 13 = (personagem, roboAfetarArea 2 mundo)
+  | otherwise = status
+  where mundo = snd status
+        personagem = fst status  
