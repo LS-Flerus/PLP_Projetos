@@ -25,8 +25,8 @@ encontroBesta status idLocal
     | mod day 3 == 0 && momento == Manha && idLocal == 2 = True
     | mod day 2 == 0 && momento == Manha && idLocal == 3 = True
     | mod day 1 == 0 && momento == Manha && idLocal == 4 = True
-    | mod day 2 == 0 && momento == Tarde && idLocal == 3 = True
-    | mod day 1 == 0 && momento == Tarde && idLocal == 4 = True
+    | mod day 2 == 0 && momento == Tarde && idLocal == 4 = True
+    | mod day 1 == 0 && momento == Tarde && idLocal == 3 = True
     | momento == Noite && idLocal == 2 = True
     | otherwise = False
     where mundo = snd status
