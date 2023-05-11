@@ -108,3 +108,13 @@ areaRemoveTodosItem mundo idLocal item =
     where local = areas mundo !! (idLocal - 1)
           locaisBefore = take (idLocal - 1) (areas mundo)
           locaisAfter = drop (idLocal) (areas mundo)
+
+  
+checaSeFimDeJogo :: Status -> String
+checaSeFimDeJogo status
+                  | fome personagem >= 100 = "Voce morreu de fome."
+                  | sede personagem >= 100 = "Voce morreu de sede."
+                  | vida personagem <= 0 = "Voce morreu de morte matada."
+                  | vidaCarro mundo >= 100 = "Parabens, seu carro esta rodando de novo."
+                  where personagem = fst status
+                        mundo = snd status
