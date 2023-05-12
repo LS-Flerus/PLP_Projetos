@@ -15,7 +15,7 @@ usarItemImpl item status
   | item == agua = (setSede (sede mc - 25) mc, mundo)
   | item == comida = (setFome (fome mc - 25) mc, mundo)
   | item == kitMedico = (setVida (vida mc + 25) mc, mundo)
-  | otherwise = (mc, setVidaCarro (vidaCarro mundo + 15) mundo) 
+  | otherwise = (mc, setVidaCarro (vidaCarro mundo + 25) mundo) 
   where
     mc = removeItemPersonagem item (fst status)
     mundo = snd status
