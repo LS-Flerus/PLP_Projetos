@@ -32,3 +32,10 @@ pritIvetarioFerramenta([(Id,_)|ProximoItem], Indice) :- item(Id, Nome, _),
     write(".  "),
     writeln(Nome),
     pritIvetarioFerramenta(ProximoItem, IdiceProximo).
+
+printReceitas() :- writeln("RECEITAS:"), findall(X, receita(X, _, _, _), Lista), pritReceitas(Lista). 
+pritReceitas([]):-!.
+pritReceitas([Id|Proximo]) :- 
+    receita(Id, A, B, R), item(A, NomeA, _), item(B, NomeB, _), item(R, NomeR, _),
+    write(Id), write(".  "), write(NomeA), write(" + "), write(NomeB), write(" -> "), writeln(NomeR),
+    pritReceitas(Proximo).

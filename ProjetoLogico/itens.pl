@@ -30,3 +30,14 @@ item(19, "PICARETA", "FERRAMENTA").
 item(20, "MACHADO", "FERRAMENTA").
 item(21, "CHAPEU OPERARIO", "FERRAMENTA").
 item(22, "MOCHILA", "FERRAMENTA").
+
+% Receitas
+
+% {idReceita = 1, itemA = linha, itemB = linha, resultado = corda}.
+receita(1, 11, 11, 16).
+% {idReceita = 2, itemA = madeira, itemB = linha, resultado = varaPesca}.
+receita(2, 9, 11, 15).
+% {idReceita = 3, itemA = madeira, itemB = pedra, resultado = picareta}.
+receita(3, 9, 10, 19).
+% {idReceita = 4, itemA = madeira, itemB = pedra, resultado = machado}.
+receita(4, 9, 10, 20).

@@ -25,8 +25,11 @@ menu(1, Mc, Mundo) :-
 
 % CRIAR ITEM
 menu(2, Mc, Mundo) :-         
-    write("CRIAR ITEM"),
-    momentoDia(Mc,Mundo), !.
+    last(Mc, Inventario),
+    findall((X, Y), (item(X, _, "MATERIAL"), member((X, Y), Inventario)), InventarioMateriais),
+    printInventario(InventarioMateriais), printReceitas(),
+    read(Opcao), criarItem(Opcao, Mc, McMudado),
+    momentoDia(McMudado,Mundo), !.
 
 % COLETA
 menu(3, Mc, Mundo) :- 
@@ -66,10 +69,10 @@ encenrrarMomentoDia([Vida,Fome,Sede|T], [Dia,MomentoDia|T2]) :-
 main([]) :-
     inicio(X), write(X),
     % let mc = Personagem {vida = 100, fome = 0, sede = 0, inventario = [(agua, 2), (comida, 1), (faca, 1)]}
-    MC = [50, 30, 25, [(1, 2), (2, 1), (3, 1), (4, 1), (12, 1)]],
+    MC = [100, 0, 0, [(1, 2), (2, 1), (9, 6), (10, 2), (12, 1)]],
     /*let mundo = CamboinhaDoNorte {dia = 1, momentoDia = Manha, vidaCarro = 0, 
                                     locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma],
                                     areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]}*/
-    MUNDO = [1, "MANHA", 20, ["Nenhuma", "Nenhuma", "Nenhuma", "Nenhuma", "Nenhuma"], []],
+    MUNDO = [1, "MANHA", 0, ["Nenhuma", "Nenhuma", "Nenhuma", "Nenhuma", "Nenhuma"], []],
     loopDia(MC, MUNDO),
     halt.

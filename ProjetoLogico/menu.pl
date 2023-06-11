@@ -23,6 +23,9 @@ usarItem(ITEM, [Vida,Fome,Sede,Inventario], [DIA, MomentoDia, VidaCarro|T], [Vid
     ; VidaCarroII is VidaCarro + 25, removeItem(ITEM, Inventario, Inventario2), MundoMudado = [DIA, MomentoDia, VidaCarroII|T], !.
 
 % criarItemImpl :: Int -> Personagem -> Personagem
+criarItem(IdReceita, [Vida,Fome,Sede,Inventario], [Vida,Fome,Sede,InventarioFinal]) :-
+    receita(IdReceita, A, B, R),
+    removeItem(A, Inventario, Inventario2), removeItem(B, Inventario2, Inventario3), addItem(R, Inventario3, InventarioFinal).
 
 % coletarImpl :: Status -> Int -> [Item] -> Status
 
