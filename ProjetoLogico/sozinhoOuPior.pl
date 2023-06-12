@@ -1,4 +1,5 @@
 :- ['itens.pl'].
+:- ['criaturas.pl'].
 :- ['mundo.pl'].
 :- ['util.pl'].
 :- ['inventario.pl'].
@@ -6,7 +7,7 @@
 
 loopDia(Mc, [Dia|Tail]) :-
     inicioDia(Dia),
-    % putStrLn (roboBarulhos (dia mundo) ++ "\n") 
+    roboBarulhos(Dia),
     momentoDia(Mc, [Dia|Tail]).
 
 momentoDia(Mc, Mundo) :-
@@ -33,13 +34,33 @@ menu(2, Mc, Mundo) :-
 
 % COLETA
 menu(3, Mc, Mundo) :- 
-    write("SAIR EM COLETA"),
-    encenrrarMomentoDia(Mc, Mundo), !.
+    escolherLocal(String), writeln(String),
+    read(Opcao),
+
+    last(Mc, Inventario),
+    writeln("Quais ferramentas deseja levar? (max 2. Digite [Int] ou [] para nao levar nada.)"),
+    findall((X, Y), (item(X, _, "FERRAMENTA"), member((X, Y), Inventario)), InventarioFerramenta),
+    printInventarioFerramenta(InventarioFerramenta),
+    read(OpcaoItens),
+    findall(I2, (member(I, OpcaoItens), I2 is I - 1), Indices), findall(X, (member(I2, Indices), nth0(I2, InventarioFerramenta, (X, _))), Itens), 
+    coletar(Mc, Mundo, Opcao, Itens, McMudado, MundoMudado),
+
+    encenrrarMomentoDia(McMudado, MundoMudado), !.
 
 % INVESTIGACAO
 menu(4, Mc, Mundo) :- 
-    write("SAIR EM INVESTIGACAO"),
-    encenrrarMomentoDia(Mc, Mundo), !.
+    escolherLocal(String), writeln(String),
+    read(Opcao),
+
+    last(Mc, Inventario),
+    writeln("Quais ferramentas deseja levar? (max 5. Digite [Int] ou [] para nao levar nada.)"),
+    findall((X, Y), (item(X, _, "FERRAMENTA"), member((X, Y), Inventario)), InventarioFerramenta),
+    printInventarioFerramenta(InventarioFerramenta),
+    read(OpcaoItens),
+    findall(I2, (member(I, OpcaoItens), I2 is I - 1), Indices), findall(X, (member(I2, Indices), nth0(I2, InventarioFerramenta, (X, _))), Itens), 
+    investigar(Mc, Mundo, Opcao, Itens, McMudado, MundoMudado),
+
+    encenrrarMomentoDia(McMudado, MundoMudado), !.
 
 % VER INVENTARIO
 menu(5, Mc, Mundo) :- 
@@ -69,10 +90,10 @@ encenrrarMomentoDia([Vida,Fome,Sede|T], [Dia,MomentoDia|T2]) :-
 main([]) :-
     inicio(X), write(X),
     % let mc = Personagem {vida = 100, fome = 0, sede = 0, inventario = [(agua, 2), (comida, 1), (faca, 1)]}
-    MC = [100, 0, 0, [(1, 2), (2, 1), (9, 6), (10, 2), (12, 1)]],
+    MC = [100, 0, 0, [(1, 2), (2, 1), (12, 1)]],
     /*let mundo = CamboinhaDoNorte {dia = 1, momentoDia = Manha, vidaCarro = 0, 
                                     locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma],
                                     areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]}*/
-    MUNDO = [1, "MANHA", 0, ["Nenhuma", "Nenhuma", "Nenhuma", "Nenhuma", "Nenhuma"], []],
+    MUNDO = [2, "MANHA", 0, ["ARMADA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], []],
     loopDia(MC, MUNDO),
     halt.

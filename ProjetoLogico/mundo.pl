@@ -6,3 +6,7 @@ nextMomentoDia("MANHA", "TARDE").
 nextMomentoDia("TARDE", "NOITE").
 nextMomentoDia("NOITE", "MANHA").
 
+nextStatusArmadilha("NENHUMA", "ARMANDO").
+nextStatusArmadilh("ARMANDO", "ARMADA").
+nextStatusArmadilh("ARMADA", "NENHUMA").
+

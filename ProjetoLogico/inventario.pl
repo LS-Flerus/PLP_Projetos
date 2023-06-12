@@ -8,6 +8,9 @@ removeItem(X,[(X,Y)|Tail], R) :- Z is Y - 1,
     (Z =:= 0 -> R = Tail; R = [(X, Z)| Tail]),!.
 removeItem(X,[(C,Y)|Tail], [(C,Y)|Rabo]) :- removeItem(X,Tail,Rabo).
 
+areaRemoveItem(1, IdItem, [[Nome, Inventario|T]|T2], [[Nome, Inventario2|T]|T2]) :- removeItem(IdItem, Inventario, Inventario2),!.
+areaRemoveItem(IdLocal, IdItem, [Local|T], [Local|T2]) :- I is IdLocal - 1, (I, IdItem, T, T2).
+
 % add item (idex do item, invetario, invetario mudado, invetario alterado) 
 addItem(Index,[], R) :- R = [(Index,1)],!.
 addItem(X,[(X,Z)|Tail], [(X,Q)|Tail]) :- Q is Z + 1,!.

@@ -14,3 +14,8 @@ checaFimDeJogo([_,_,100|_], _) :- write("Voce morreu de sede."), halt.
 checaFimDeJogo(_, [_,_,100|_]) :- write("Parabens, seu carro esta rodando de novo."), halt.
 checaFimDeJogo(_, _).
 
+sublista([], _) :- !.
+sublista(L2, L1):- 
+    append(_, L3, L1),  
+    append(L2, _, L3).
+
