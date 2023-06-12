@@ -38,6 +38,30 @@ ataqueRoboBaseMilitar(Vida, Vida2) :- writeln("Voce foi atacado pelo Robo\n"), V
 
 roboBarulhos(Dia) :- member(Dia, [3, 5, 7, 9, 11, 13]) -> writeln("Escuta-se ao longe barulhos de engrenagem"); write("").
         
+roboDestruirLocal(5, [A, B, C, D, E], [A, B, C, D2, E]) :- roboAfetarArea(D, D2), !.
+roboDestruirLocal(9, [A, B, C, D, E], [A, B, C2, D, E]) :- roboAfetarArea(C, C2), !.
+roboDestruirLocal(13, [A, B, C, D, E], [A, B2, C, D, E]) :- roboAfetarArea(B, B2), !.
+roboDestruirLocal(_, [A, B, C, D, E], [A, B, C, D, E]).
+
+roboAfetarArea([N, I, [_|TC], [_|TI]], [N, I, TC, [EI2|TI]]) :- eventoRobo(EI2).
+
+eventoRobo([[], 0, "",  "O Automato operou neste lugar, e notorio que este nunca mais sera o mesmo."]).
+
+/*eventoRobo = EventoInvestigacao {
+                                  requisitosInvestigacao = []
+                                  , alvoInvestigacao = []
+                                  , mensagemFalha = ""
+                                  , mensagemSucesso = "O Automato operou neste lugar, e é notório que este nunca mais será o mesmo"
+                                  }*/
+
+/*roboAfetarLocal :: Local -> Local
+roboAfetarLocal local = 
+  Local {
+    nomeLocal = nomeLocal local,
+    inventarioLocal = inventarioLocal local,
+    eventosColeta = tail (eventosColeta local),
+    eventosInvestigacao = [eventoRobo] ++ (tail (eventosInvestigacao local))
+  }*/
 
 /*roboDestruirLocal :: Int -> Status -> Status
 roboDestruirLocal dia status

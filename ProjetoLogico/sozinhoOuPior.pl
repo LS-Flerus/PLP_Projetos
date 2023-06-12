@@ -87,9 +87,10 @@ menu(_, Mc, Mundo) :-
     write("OPCAO INVALIDA"),
     momentoDia(Mc, Mundo).
 
-encenrrarMomentoDia([Vida,Fome,Sede|T], [Dia,MomentoDia|T2]) :-
-    MomentoDia = "NOITE" -> nextMomentoDia(MomentoDia, Next), Sede2 is Sede + 2, Fome2 is Fome + 10, Dia2 is Dia + 1, loopDia([Vida,Fome2,Sede2|T], [Dia2,Next|T2])
-    ; nextMomentoDia(MomentoDia, Next), Sede2 is Sede + 2, momentoDia([Vida,Fome,Sede2|T], [Dia,Next|T2]).
+encenrrarMomentoDia([Vida,Fome,Sede|T], [Dia, MomentoDia, VidaCarro, Armadilhas, Locais]) :-
+    MomentoDia = "NOITE" -> 
+    nextMomentoDia(MomentoDia, Next), Sede2 is Sede + 2, Fome2 is Fome + 10, Dia2 is Dia + 1, roboDestruirLocal(Dia, Locais, Locais2), loopDia([Vida,Fome2,Sede2|T], [Dia2,Next, VidaCarro, Armadilhas, Locais2])
+    ; nextMomentoDia(MomentoDia, Next), Sede2 is Sede + 2, momentoDia([Vida,Fome,Sede2|T], [Dia, Next, VidaCarro, Armadilhas, Locais]).
 
 
 main([]) :-
@@ -101,6 +102,6 @@ main([]) :-
                                     locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma],
                                     areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]}*/
     basemilitar(BaseMilitar), floresta(Floresta), lago(Lago), montanha(Montanha), vilaabandonada(VilaAbandonada),
-    MUNDO = [1, "MANHA", 0, ["NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], [BaseMilitar, Floresta, Lago, Montanha, VilaAbandonada]],
+    MUNDO = [5, "NOITE", 0, ["NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], [BaseMilitar, Floresta, Lago, Montanha, VilaAbandonada]],
     loopDia(MC, MUNDO),
     halt.
