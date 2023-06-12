@@ -1,7 +1,7 @@
 vilaabandonada(Local) :- 
     Nome = 'VILA ABANDONADA', 
     Inventario = % [(kitMedico, 7), (comida, 10), (combustivel, 1)]
-        [[3, 7], [2, 10], [5, 1]], 
+        [(3, 7), (2, 10), (5, 1)], 
     EventosColeta = 
                [
                 [[], 3],

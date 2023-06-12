@@ -4,6 +4,11 @@
 :- ['util.pl'].
 :- ['inventario.pl'].
 :- ['menu.pl'].
+:- ['basemilitar.pl'].
+:- ['floresta.pl'].
+:- ['lago.pl'].
+:- ['montanha.pl'].
+:- ['vilaabandonada.pl'].
 
 loopDia(Mc, [Dia|Tail]) :-
     inicioDia(Dia),
@@ -91,9 +96,11 @@ main([]) :-
     inicio(X), write(X),
     % let mc = Personagem {vida = 100, fome = 0, sede = 0, inventario = [(agua, 2), (comida, 1), (faca, 1)]}
     MC = [100, 0, 0, [(1, 2), (2, 1), (12, 1)]],
+    
     /*let mundo = CamboinhaDoNorte {dia = 1, momentoDia = Manha, vidaCarro = 0, 
                                     locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma],
                                     areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]}*/
-    MUNDO = [2, "MANHA", 0, ["ARMADA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], []],
+    basemilitar(BaseMilitar), floresta(Floresta), lago(Lago), montanha(Montanha), vilaabandonada(VilaAbandonada),
+    MUNDO = [1, "MANHA", 0, ["NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], [BaseMilitar, Floresta, Lago, Montanha, VilaAbandonada]],
     loopDia(MC, MUNDO),
     halt.

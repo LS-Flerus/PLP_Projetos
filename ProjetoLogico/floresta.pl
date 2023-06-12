@@ -1,7 +1,7 @@
 floresta(Local) :- 
     Nome = 'FLORESTA', 
     Inventario = % [(madeira, 200), (comida, 200), (rebimbocaDaParafuseta, 1)],
-        [[9, 200], [2, 200], [7, 1]] , 
+        [(9, 200), (2, 200), (7, 1)] , 
     EventosColeta = 
                [
                 [[], 9],

@@ -1,7 +1,7 @@
 montanha(Local) :- 
     Nome = 'MONTANHA', 
     Inventario = % [(pedra, 200), (bussola, 1)]
-        [[10, 200], [14, 1]], 
+        [(10, 200), (14, 1)], 
     EventosColeta = 
                [
                 [[], 10],

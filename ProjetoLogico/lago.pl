@@ -1,7 +1,7 @@
 lago(Local) :- 
     Nome = 'LAGO', 
     Inventario = % [(pedra, 200), (agua, 200), (estepe, 1)],
-        [[10, 200], [1, 200], [4, 1]] , 
+        [(10, 200), (1, 200), (4, 1)] , 
     EventosColeta = 
                [
                 [[], 10],

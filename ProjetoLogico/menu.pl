@@ -1,6 +1,7 @@
 :- ['itens.pl'].
 :- ['inventario.pl'].
 :- ['criaturas.pl'].
+:- ['explorar.pl'].
 
 % usarItemImpl :: Item -> Status -> Status
 usarItem(1, [Vida,Fome,Sede,Inventario], Mundo, McMudado, Mundo) :-
@@ -32,7 +33,7 @@ criarItem(IdReceita, [Vida,Fome,Sede,Inventario], [Vida,Fome,Sede,InventarioFina
 coletar([Vida|T], [Dia, MomentoDia|T2], IdLocal, _, [Vida2|T], [Dia, MomentoDia|T2]) :- encontroBesta(Dia, MomentoDia, IdLocal) -> ataqueBesta(Vida, Vida2), !.
 coletar([Vida|T], [Dia, MomentoDia, VidaCarro, Armadilhas, Locais], IdLocal, _, [Vida2|T], [Dia, MomentoDia, VidaCarro, Armadilhas2, Locais]) :- encontroArmadilha(Armadilhas, IdLocal) -> cairArmadilha(Vida, Vida2, Armadilhas2), !.
 coletar([Vida|T], [Dia, MomentoDia|T2], IdLocal, _, [Vida2|T], [Dia, MomentoDia|T2]) :- encontroRoboBaseMilitar(Dia, MomentoDia, IdLocal) -> ataqueRoboBaseMilitar(Vida, Vida2), !.
-coletar(Mc, Mundo, Opcao, Itens, Mc, Mundo).
+coletar(Mc, Mundo, Opcao, Itens, Mc2, Mundo2) :- coletarLocal(Mc, Mundo, Opcao, Itens, Mc2, Mundo2).
 
 
 % investigarImpl :: Status -> Int -> [Item] -> Status
