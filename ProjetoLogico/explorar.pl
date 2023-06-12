@@ -42,7 +42,7 @@ investigarLocal([Vida, Fome, Sede, Inventario], [Dia, MomentoDia, VidaCarro, Arm
     investigarLocalB(Mc, Mundo, IdLocal, Itens, EventosInvestigacao),
     finalizar(Armadilhas, IdLocal, ArmadilhasFinal).
 
-investigarLocalB(Mc, Mundo, _, _, []):- !.
+investigarLocalB(_, _, _, _, []):- !.
 
 investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal, Itens, [Evento|T]) :-
   nth0(0, Evento, Requisitos),
@@ -50,7 +50,7 @@ investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal,
   investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal, Itens, T), !.
 
 investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal, Itens, [Evento|T]) :-
-  I is IdLocal - 1, nth0(I, Locais, Local), nth0(1, Evento, Alvo),
+  nth0(1, Evento, Alvo),
   Alvo =:= 0 -> nth0(3, Evento, MensagemSucess), writeln(MensagemSucess), 
   investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal, Itens, T), !.
   
@@ -60,4 +60,4 @@ investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal,
   
 investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal, Itens, [Evento|T]) :-
   nth0(3, Evento, MensagemSucess), writeln(MensagemSucess),
-  investigarLocalB([V, F, S, Inventario2], [D, M, VC, Armadilhas, Locais2], IdLocal, Itens, T).
+  investigarLocalB([V, F, S, Inventario], [D, M, VC, Armadilhas, Locais], IdLocal, Itens, T).

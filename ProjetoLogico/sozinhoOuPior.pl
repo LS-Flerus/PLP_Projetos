@@ -102,6 +102,6 @@ main([]) :-
                                     locaisArmadilha = [Nenhuma, Nenhuma, Nenhuma, Nenhuma, Nenhuma],
                                     areas = [baseMilitar, floresta, lago, montanha, vilaAbandonada]}*/
     basemilitar(BaseMilitar), floresta(Floresta), lago(Lago), montanha(Montanha), vilaabandonada(VilaAbandonada),
-    MUNDO = [5, "NOITE", 0, ["NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], [BaseMilitar, Floresta, Lago, Montanha, VilaAbandonada]],
+    MUNDO = [1, "MANHA", 0, ["NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA", "NENHUMA"], [BaseMilitar, Floresta, Lago, Montanha, VilaAbandonada]],
     loopDia(MC, MUNDO),
     halt.
