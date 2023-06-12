@@ -19,6 +19,6 @@ sublista(L2, L1):-
     append(_, L3, L1),  
     append(L2, _, L3).
 
-notSublista(L2, L1, Bool) :-
-  sublista(L2, L1) -> Bool = false; Bool = true.
+notX(X) :-
+  X -> false; true.
 

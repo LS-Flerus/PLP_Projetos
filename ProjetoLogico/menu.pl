@@ -40,7 +40,7 @@ coletar(Mc, Mundo, Opcao, Itens, Mc2, Mundo2) :- coletarLocal(Mc, Mundo, Opcao, 
 investigar([Vida|T], [Dia, MomentoDia|T2], IdLocal, _, [Vida2|T], [Dia, MomentoDia|T2]) :- encontroBesta(Dia, MomentoDia, IdLocal) -> ataqueBesta(Vida, Vida2), !.
 investigar([Vida|T], [Dia, MomentoDia, VidaCarro, Armadilhas, Locais], IdLocal, _, [Vida2|T], [Dia, MomentoDia, VidaCarro, Armadilhas2, Locais]) :- encontroArmadilha(Armadilhas, IdLocal) -> cairArmadilha(Vida, Vida2, Armadilhas2), !.
 investigar([Vida|T], [Dia, MomentoDia|T2], IdLocal, _, [Vida2|T], [Dia, MomentoDia|T2]) :- encontroRoboBaseMilitar(Dia, MomentoDia, IdLocal) -> ataqueRoboBaseMilitar(Vida, Vida2), !.
-investigar(Mc, Mundo, Opcao, Itens, Mc, Mundo).
+investigar(Mc, Mundo, Opcao, Itens, Mc2, Mundo2) :- investigarLocal(Mc, Mundo, Opcao, Itens, Mc2, Mundo2).
 
 % verStatusImpl :: Status -> String
 verStatus(Mc, Mundo) :-

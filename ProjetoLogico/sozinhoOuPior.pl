@@ -69,7 +69,7 @@ menu(4, Mc, Mundo) :-
 
 % VER INVENTARIO
 menu(5, Mc, Mundo) :- 
-    nth0(3, Mc, Inventario), printInventario(Inventario),
+    nth0(3, Mc, Inventario), printInventario(Inventario), writeln(""),
     momentoDia(Mc, Mundo), !.
 
 % VER STATUS

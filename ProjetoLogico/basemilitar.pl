@@ -1,7 +1,7 @@
 basemilitar(Local) :- 
     Nome = 'BASE MILITAR', 
     Inventario = % [(linha, 200), (bateriaCarro,1), (lanterna, 10)],
-        [(11, 200), (6, 1), (13, 10)] , 
+        [(11, 200), (6, 1), (13, 1)], 
     EventosColeta = [[[], 11],[[], 13],[[13], 6]],
     EventosInvestigacao = 
                          [
