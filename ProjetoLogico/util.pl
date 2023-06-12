@@ -16,8 +16,9 @@ checaFimDeJogo(_, _).
 
 sublista([], _) :- !.
 sublista(L2, L1):- 
-    append(_, L3, L1),  
-    append(L2, _, L3).
+    sort(L2, L2X), sort(L1, L1X),
+    append(_, L3, L1X),  
+    append(L2X, _, L3).
 
 notX(X) :-
   X -> false; true.
