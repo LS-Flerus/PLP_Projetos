@@ -50,7 +50,7 @@ $ ghc Main.hs
 Logico:
 
 ```Bash
-$ ghc swipl
+swipl
 1 ?- [sozinhoOuPior].
 2 ?- main.
 ```
