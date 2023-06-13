@@ -39,8 +39,18 @@ O Autômato - um robô programado para realizar uma missão específica. Não é
 
 São caixas de diálogo especiais que são desbloqueadas em certas condições. Cada evento se comporta de forma diferente: alguns podem afetar seus status de alguma forma, outros podem acabar te dando informações sobre as 3 criaturas e dicas sobre como prosseguir com seu objetivo, ou até mesmo lhe dar itens.
 
-# Como compilar?
+# Como jogar?
+
+Funcional:
 
 ```Bash
 $ ghc Main.hs
+```
+
+Logico:
+
+```Bash
+$ ghc swipl
+1 ?- [sozinhoOuPior].
+2 ?- main.
 ```
